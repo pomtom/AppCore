@@ -1,12 +1,11 @@
-#Depending on the operating system of the host machines(s) that will build or run the containers, the image specified in the FROM statement may need to be changed.
-#For more information, please see https://aka.ms/containercompat
-# This Docker file will be used for WindowsPlatform
+# This File will be used for Linux platform
 
-FROM microsoft/dotnet:2.2-aspnetcore-runtime-nanoserver-1803 AS base
+FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
+MAINTAINER PramodLawate
 WORKDIR /app
 EXPOSE 80
 
-FROM microsoft/dotnet:2.2-sdk-nanoserver-1803 AS build
+FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
 COPY ["AppCore/AppCore.csproj", "AppCore/"]
 RUN dotnet restore "AppCore/AppCore.csproj"
